@@ -1,0 +1,63 @@
+import discord
+import random
+import time
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.command()
+async def mem(ctx):
+    with open('resimler\meme4.png', 'rb') as f:
+       # Dönüştürülen Discord kütüphane dosyasını bu değişkende saklayalım!
+       picture = discord.File(f)
+    await ctx.send(file=picture)
+
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f"Merhaba! Ben {bot.user}, bir Discord çevreye yara botuyum! Eğer benden çevreyle ilgili yardım istersen 'cevre' komudunu kullan yada biraz eğlenmek için 'dahafazla' komudunu kullan! Ben her zaman buradayım :D ")
+
+@bot.command()
+async def dahafazla(ctx):
+    await ctx.send("hmm demek daha fazla şey istiyorusn peki sanrım eğlence arıyorsun şu anda sana çevreyle ilgili bir oyun açamıyorum ama al bu komutla (mem) memlere bakarsın :P" )
+    
+@bot.command()
+async def cevre(ctx):
+    await ctx.send("anladım sana bununla ilgili daha çok bilgi verebilmem için 'fikirler' kodunu kullan" )
+
+@bot.command()
+async def fikirler(ctx):
+    await ctx.send(f'Belki karton kutularla eğlenceli bir şeyler yapabilirsin! kim bilir belki Hacivat Karagöz kuklası zaten hazır Ramazanda iken tam zamanı olur')
+    time.sleep(1)
+    await ctx.send(f'Eski ev eşyalarını (herhangi bir mobilya) ihtiyacı olana verebilirsiniz veya satabilirsiniz ..tabi uhh yeni mobilyaya paranız yetiyorsa malum ekonomi :P')
+    time.sleep(1)
+    await ctx.send(f'Gördüğüm kadarıyla boş pilleri çöpe atıyorsun aynı yağları lavaboya döktüğün gibi çok ayıp bunun için yetkililerin olduğunu biliyorsun onlara versene >:T')
+    time.sleep(1)
+    await ctx.send(f'Dolabındaki eski kıyafetlerin kumaşını yama yapmak için kullanbilrsin veya onları satabilirsin bence iyi para eder :] ')
+    time.sleep(1)
+    await ctx.send(f'Hop hop hop napıyon o güzelim yemekler atılır mı?? Aaa çok ayıp biraz sokak hayvanlarıyla paylaşabilirsin bence.')
+    time.sleep(1)
+    await ctx.send(f'Bak ya elektronik eşyalar da eskidi napsak biliyon mu? bence yedek parça olarak başkalarına satabilirsin en az bi 200 lira ile dene bakalım.')
+    time.sleep(1)
+    await ctx.send(f'Yani muhtemelen araban yoktur malum araba fiyatları uçtu sen otobüsle devam et iyi gidiyorusn.')
+    time.sleep(1)
+    await ctx.send(f'Bak orda geçen yıkamada bitirdiğin klorağın plastiği var onu bence geri dönüşüme at derim veya onu da kartonlar gibi farklı şeylerde kullanabilirsin.')
+    time.sleep(1)
+    await ctx.send(f'Bu arada geçen gün yere attığın kutu kola çöpünü biliyorum bidahakine onu metal geri dönüşümüne atmayı düşünebilirsin.')
+
+@bot.command()
+async def cevreresim(ctx):
+    with open(r'resimler\meme5.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    time.sleep(1)
+    await ctx.send(f'bence iyi fikir bu eski şeyleri satabilir ve sonra daha fazla çöp çıkarıp daha fazla para kazanırız!')
+
+
+bot.run("insert token")
